@@ -4,7 +4,7 @@ public class Fan {
 	static int slow = 1;
 	static int medium = 2;
 	static int fast = 3;
-	private static int id = 1;
+	private static int id = 0;
 	// default data member
 	private int speed = slow;
 	private boolean isOn = false;
