@@ -13,7 +13,7 @@ public class Fan {
 
 	// default conc with no arg
 	public Fan() {
-		
+
 	}
 
 	// user input fan
@@ -24,8 +24,9 @@ public class Fan {
 		this.radius = radius;
 		this.color = color;
 	}
+
 	public Fan(int speed) {
-		this.speed=speed;
+		this.speed = speed;
 	}
 
 	// getters/setters
@@ -76,7 +77,6 @@ public class Fan {
 		} else {
 			return "id =" + id + " speed = " + speed + " color = " + color + " radius = " + radius + " fan is off";
 		}
-		
 
 	}
 
