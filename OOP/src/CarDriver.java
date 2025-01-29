@@ -22,9 +22,13 @@ public class CarDriver {
 		ocar.setWheels(18, "Alloy");
 		
 		Wheels[] wheels = ocar.getWheels();
+		//for each Wheel in wheels (Called wheel)
 		for (Wheels wheel: wheels) {
-			System.out.println(wheels);
+			System.out.println(wheels.toString());
 		}
+		
+		CarWash.cleanCar(ocar);
+		
 		
 	}
 
