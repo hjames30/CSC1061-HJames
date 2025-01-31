@@ -13,8 +13,14 @@ public class Shipment {
 	public double getTotalCost(Package pack) {
 		return pack.calulateCost(pack.getWeightKg(), pack.getCostPerKg());
 	}
-	public void updateStatis(String) {
-		
+	public void updateStatis(Package pack,String update) {
+		pack.setStatus(update);
 	}
+
+	@Override
+	public String toString() {
+		return "Shipment [packages=" + packages + "]";
+	}
+	
 }
 
