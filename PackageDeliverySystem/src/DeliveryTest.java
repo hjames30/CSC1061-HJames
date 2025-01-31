@@ -8,7 +8,7 @@ public class DeliveryTest {
 		Shipment ship = new Shipment();
 		ship.addPackage(tolietPaper);
 		ship.addPackage(hoodie);
-		ship.getTotalCost(tolietPaper);
+		System.out.printf("$%,.2f \n",ship.getTotalCost());
 		ship.updateStatis(tolietPaper, "Arived");
 		System.out.println(ship);
 		System.out.println();

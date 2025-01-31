@@ -12,8 +12,15 @@ public class Shipment {
 		packages.add(pack);
 	}
 
-	public double getTotalCost(Package pack) {
-		return pack.calulateCost(pack.getWeightKg(), pack.getCostPerKg());
+	public double getTotalCost() {
+		double cost =0;
+		for(int i=0;i< packages.size();i++) {
+			Package testPack =packages.get(i);
+			 cost =+	testPack.calulateCost(testPack.getWeightKg(), testPack.getWeightKg());
+			
+		}
+		return cost;
+		
 	}
 
 	public void updateStatis(Package pack, String update) {

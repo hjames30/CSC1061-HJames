@@ -15,7 +15,7 @@ public class Package {
 	}
 
 	private int generateTrackingNum() {
-		return ((int) Math.random() * (999999999 - 1111111111) + 1) + 1111111111;
+		return (int) (Math.random()*1000000000);
 	}
 
 	private String getStatus() {
@@ -47,7 +47,8 @@ public class Package {
 	}
 
 	public double calulateCost(double weightKg, double costPerKg) {
-		return costPerKg * weightKg;
+		double cost = (costPerKg * weightKg);
+		return cost;
 
 	}
 
