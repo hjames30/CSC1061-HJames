@@ -1,4 +1,4 @@
 
-public class Faculty {
+public class Faculty extends Employee {
 
 }
