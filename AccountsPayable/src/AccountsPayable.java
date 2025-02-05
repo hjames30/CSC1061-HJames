@@ -5,11 +5,11 @@ public class AccountsPayable {
 	public static void main(String[] args) {
 		Employee[] payableEmployees = new Employee[6];
 		Scanner input = new Scanner(System.in);
-		
 		int type;
-		
+
 		for (int i = 0; i < 6; i++) {
-			System.out.println("What type of emplyee is it, 1:Empolyee, 2: Hourly, 3:Salaried , 4:Commision, 5:BaseplusCommision");
+			System.out.println(
+					"What type of emplyee is it, 1:Empolyee, 2: Hourly, 3:Salaried , 4:Commision, 5:BaseplusCommision");
 			type = input.nextInt();
 			input.nextLine();
 			switch (type) {
@@ -51,7 +51,7 @@ public class AccountsPayable {
 				name211 = input.nextLine();
 				System.out.println("What is their SSN?");
 				int ssn111 = input.nextInt();
-				System.out.println("What is the weekly salary"); 
+				System.out.println("What is the weekly salary");
 				double weekSal = input.nextDouble();
 				payableEmployees[i] = new SalariedEmployee(name111, name211, ssn111, weekSal);
 				break;
@@ -82,48 +82,61 @@ public class AccountsPayable {
 				System.out.println("What is their SSN?");
 				int comSSn = input.nextInt();
 				System.out.println("What is their gross Sales?");
-				double comgros=input.nextDouble();
+				double comgros = input.nextDouble();
 				System.out.println("What is their commision rate?");
-				double comrate =input.nextDouble();
+				double comrate = input.nextDouble();
 				System.out.println("What is their base pay??");
 				double basePat = input.nextDouble();
-				payableEmployees[i] = new BasePlusCommissionEmployee(comand1, comand2, comSSn, comgros, comrate, basePat);
+				payableEmployees[i] = new BasePlusCommissionEmployee(comand1, comand2, comSSn, comgros, comrate,
+						basePat);
 				break;
-				
+
 			}
-			
+
 		}
-		for(int i=0; i<6;i++) {
+		for (int i = 0; i < 6; i++) {
 			printJustNameAndPayment(payableEmployees[i]);
 			increaseBasePlusBy10((payableEmployees[i]));
 			printJustNameAndPayment(payableEmployees[i]);
 		}
-		
 
 	}
+
 	public static void printDetailsToString(Employee emp) {
 		System.out.println(emp.toString());
 	}
+
 	public static void printDetailsWithoutToString(Employee emp) {
-		if(emp instanceof Employee) {
-			System.out.println(emp.getFirstName()+" "+emp.getLastName()+" "+emp.getSsn()+" "+emp.getPaymentAmount());
-		}else if(emp instanceof HourlyEmployee) {
-			System.out.println(emp.getFirstName()+" "+emp.getLastName()+" "+emp.getSsn()+((HourlyEmployee) emp).getHourlyWage()+" "+((HourlyEmployee) emp).getHours()+" "+emp.getPaymentAmount());
-		}else if(emp instanceof SalariedEmployee) {
-			System.out.println(emp.getFirstName()+" "+emp.getLastName()+" "+emp.getSsn()+" "+((SalariedEmployee) emp).getWeeklySalary()+" " +emp.getPaymentAmount());
-		}else if(emp instanceof CommissionEmployee) {
-			System.out.println(emp.getFirstName()+" "+emp.getLastName()+" "+emp.getSsn()+" "+((CommissionEmployee)emp).getGrossSales()+" "+((CommissionEmployee)emp).getCommissionRate()+" " +emp.getPaymentAmount());
-		}else if(emp instanceof BasePlusCommissionEmployee) {
-			System.out.println(emp.getFirstName()+" "+emp.getLastName()+" "+emp.getSsn()+" "+((BasePlusCommissionEmployee)emp).getGrossSales()+" "+((BasePlusCommissionEmployee)emp).getCommissionRate()+" "+((BasePlusCommissionEmployee)emp).getBasePay()+" "+emp.getPaymentAmount());
+		if (emp instanceof Employee) {
+			System.out.println(
+					emp.getFirstName() + " " + emp.getLastName() + " " + emp.getSsn() + " " + emp.getPaymentAmount());
+		} else if (emp instanceof HourlyEmployee) {
+			System.out.println(emp.getFirstName() + " " + emp.getLastName() + " " + emp.getSsn()
+					+ ((HourlyEmployee) emp).getHourlyWage() + " " + ((HourlyEmployee) emp).getHours() + " "
+					+ emp.getPaymentAmount());
+		} else if (emp instanceof SalariedEmployee) {
+			System.out.println(emp.getFirstName() + " " + emp.getLastName() + " " + emp.getSsn() + " "
+					+ ((SalariedEmployee) emp).getWeeklySalary() + " " + emp.getPaymentAmount());
+		} else if (emp instanceof CommissionEmployee) {
+			System.out.println(emp.getFirstName() + " " + emp.getLastName() + " " + emp.getSsn() + " "
+					+ ((CommissionEmployee) emp).getGrossSales() + " " + ((CommissionEmployee) emp).getCommissionRate()
+					+ " " + emp.getPaymentAmount());
+		} else if (emp instanceof BasePlusCommissionEmployee) {
+			System.out.println(emp.getFirstName() + " " + emp.getLastName() + " " + emp.getSsn() + " "
+					+ ((BasePlusCommissionEmployee) emp).getGrossSales() + " "
+					+ ((BasePlusCommissionEmployee) emp).getCommissionRate() + " "
+					+ ((BasePlusCommissionEmployee) emp).getBasePay() + " " + emp.getPaymentAmount());
 		}
 	}
+
 	public static void printJustNameAndPayment(Employee emp) {
-		System.out.println(emp.getFirstName()+" "+emp.getLastName()+" "+ emp.getPaymentAmount());
+		System.out.println(emp.getFirstName() + " " + emp.getLastName() + " " + emp.getPaymentAmount());
 	}
+
 	public static void increaseBasePlusBy10(Employee emp) {
-		if(emp instanceof BasePlusCommissionEmployee) {
-			
-			((BasePlusCommissionEmployee) emp).setBasePay(((BasePlusCommissionEmployee) emp).getBasePay()*1.1);
+		if (emp instanceof BasePlusCommissionEmployee) {
+
+			((BasePlusCommissionEmployee) emp).setBasePay(((BasePlusCommissionEmployee) emp).getBasePay() * 1.1);
 		}
 	}
 
