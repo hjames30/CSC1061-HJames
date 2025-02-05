@@ -2,7 +2,7 @@
 public class CommissionEmployee extends Employee {
 	private double grossSales;
 	private double commissionRate;
-	
+
 	public CommissionEmployee(String firstName, String lastName, int ssn, double grossSales, double commissionRate) {
 		super(firstName, lastName, ssn);
 		this.grossSales = grossSales;
@@ -27,16 +27,14 @@ public class CommissionEmployee extends Employee {
 
 	@Override
 	public double getPaymentAmount() {
-		return (grossSales*commissionRate);
+		return (grossSales * commissionRate);
 	}
+
 	@Override
 	public String toString() {
 		return "CommissionEmployee [getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName()
 				+ ", getSsn()=" + getSsn() + ", grossSales=" + grossSales + ", commissionRate=" + commissionRate
 				+ ", getPaymentAmount()=" + getPaymentAmount() + "]";
 	}
-	
-	
-	
-	
+
 }

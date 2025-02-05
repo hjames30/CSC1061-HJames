@@ -2,7 +2,7 @@
 public class HourlyEmployee extends Employee {
 	private double hourlyWage;
 	private double hours;
-	
+
 	public HourlyEmployee(String firstName, String lastName, int ssn, double hourlyWage, double hours) {
 		super(firstName, lastName, ssn);
 		this.hourlyWage = hourlyWage;
@@ -27,7 +27,7 @@ public class HourlyEmployee extends Employee {
 
 	@Override
 	public double getPaymentAmount() {
-		return hourlyWage*hours;
+		return hourlyWage * hours;
 	}
 
 	@Override
@@ -36,9 +36,5 @@ public class HourlyEmployee extends Employee {
 				+ getSsn() + ", hourlyWage=" + hourlyWage + ", hours=" + hours + ", getHourlyWage()=" + getHourlyWage()
 				+ "]";
 	}
-	
-	
-	
-	
-	
+
 }

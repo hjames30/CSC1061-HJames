@@ -20,15 +20,10 @@ public class SalariedEmployee extends Employee {
 		return "SalariedEmployee [getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName() + ", getSsn()="
 				+ getSsn() + ", paymentAmount=" + weeklySalary + "]";
 	}
+
 	@Override
 	public double getPaymentAmount() {
 		return weeklySalary;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

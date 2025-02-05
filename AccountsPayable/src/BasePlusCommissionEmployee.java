@@ -18,9 +18,9 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
 
 	@Override
 	public double getPaymentAmount() {
-		
-		return getBasePay()+(super.getCommissionRate()*super.getGrossSales());
-		
+
+		return getBasePay() + (super.getCommissionRate() * super.getGrossSales());
+
 	}
 
 	@Override
@@ -29,7 +29,5 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
 				+ ", getSsn()=" + getSsn() + ", getGrossSales()=" + getGrossSales() + ", getCommissionRate()="
 				+ getCommissionRate() + ", basePay=" + basePay + ", getBasePay()=" + getBasePay() + "]";
 	}
-	
-	
-	
+
 }
