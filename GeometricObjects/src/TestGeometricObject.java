@@ -12,6 +12,8 @@ public class TestGeometricObject {
 		if(test.equals(newtest)) {
 			System.out.println("They are equal ");
 		}
+		Rectangle rec = new Rectangle();
+		System.out.println(rec);
 	}
 
 }
