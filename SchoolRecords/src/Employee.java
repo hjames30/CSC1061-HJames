@@ -28,6 +28,12 @@ public class Employee extends Person {
 	public void setDateHired(String dateHired) {
 		this.dateHired = dateHired;
 	}
+	@Override
+	public String toString() {
+		return "Employee [getName()=" + getName() + ", getAdress()=" + getAdress() + ", getPhoneNumber()="
+				+ getPhoneNumber() + ", getEmailAddress()=" + getEmailAddress() + ", office=" + office + ", salary="
+				+ salary + ", dateHired=" + dateHired + "]";
+	}
 	
 	
 }

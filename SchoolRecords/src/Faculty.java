@@ -20,6 +20,13 @@ public class Faculty extends Employee {
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
+	@Override
+	public String toString() {
+		return "Faculty [getName()=" + getName() + ", getAdress()=" + getAdress() + ", getPhoneNumber()="
+				+ getPhoneNumber() + ", getEmailAddress()=" + getEmailAddress() + ", getOffice()=" + getOffice()
+				+ ", getSalary()=" + getSalary() + ", getDateHired()=" + getDateHired() + ", officeHours=" + officeHours
+				+ ", rank=" + rank + "]";
+	}
 	
 	
 }

@@ -1,8 +1,8 @@
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class TestSchoolRecords {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		Person holden = new Student("Holden","1519 Mt. Meeker.Ave","303961053","holdendjames@gmail.com","Senior");
 		Person george = new Student("George","HouseSt.","332232321","Gerogre@gmail.com","Freshman");
 		Person Jan = new Faculty("jan","House.ave","3242","Jan@email","jan office","4453","01","4-2","Janitor");
@@ -18,7 +18,7 @@ public class TestSchoolRecords {
 		Database.writePerson(Kishore2);
 		
 		
-		System.out.println(Database.readDatabase());
+		System.out.println(Database.readDatabase().toString());
 	}
 
 }

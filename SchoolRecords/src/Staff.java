@@ -15,6 +15,14 @@ public class Staff extends Employee {
 	public void setDataMember(String dataMember) {
 		this.dataMember = dataMember;
 	}
+
+	@Override
+	public String toString() {
+		return "Staff [getName()=" + getName() + ", getAdress()=" + getAdress() + ", getPhoneNumber()="
+				+ getPhoneNumber() + ", getEmailAddress()=" + getEmailAddress() + ", getOffice()=" + getOffice()
+				+ ", getSalary()=" + getSalary() + ", getDateHired()=" + getDateHired() + ", dataMember=" + dataMember
+				+ "]";
+	}
 	
 	
 }

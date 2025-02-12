@@ -14,6 +14,12 @@ public class Student extends Person {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "Student [getName()=" + getName() + ", getAdress()=" + getAdress() + ", getPhoneNumber()="
+				+ getPhoneNumber() + ", getEmailAddress()=" + getEmailAddress() + ", status=" + status + "]";
+	}
 	
 	
 }
