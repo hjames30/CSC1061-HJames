@@ -13,7 +13,7 @@ public class CreditCardValidator {
 		//checks prefix	
 		}if(prefix != 4 && prefix != 6 && getPrefix(cnum,2) !=37 && prefix!= 6) {
 			return false;
-		}if(sumOfEvenPlace(cnum)+sumOfEvenPlace(cnum)%10 !=0) {
+		}if(sumOfBoth(sumOfEvenPlace(cnum), sumOfOddPlace(cnum))%10 !=0) {
 			return false;
 		}
 		
@@ -70,5 +70,8 @@ public class CreditCardValidator {
 		}
 		return num;
 		
+	}
+	private static int sumOfBoth(int odd,  int even) {
+		return odd +even;
 	}
 }
