@@ -57,7 +57,7 @@ public class CreditCardValidator {
 			}
 			 num =num +product;
 		}
-		return (int) num;
+		return num;
 
 	}
 	private static int sumOfOddPlace(long number) {
