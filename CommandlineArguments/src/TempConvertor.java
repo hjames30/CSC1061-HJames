@@ -19,11 +19,19 @@ public class TempConvertor {
 			answer = convertCelToFah(Double.parseDouble(args[1]));
 			System.out.println("The Fahrenheit value is " + answer);
 			break;
+		default:
+			printUsage();
+			System.exit(0);
 
 		}
 		}	
 		
 
+	}
+	private static void printUsage() {
+		System.out.println("\t -f temp convertor Celious to Fahrenheight");
+		System.out.println("\t -c temp convertor Fahrenheight to Celious");
+		
 	}
 
 	public static double convertFahToCel(double fah) {
