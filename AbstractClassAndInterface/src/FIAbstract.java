@@ -1,5 +1,5 @@
 
-public abstract class FIAbstract {
+public abstract class FIAbstract implements Comparable<FIAbstract> {
 
 	private String fiName;
 	private long fiID;
@@ -38,6 +38,16 @@ public abstract class FIAbstract {
 		this.adress = adress;
 	}
 	public abstract double getIntrestRate();
+	
+	public int compareTo(FIAbstract fi) {
+		if(fiID<fi.fiID) {
+			return -1;
+		}
+		if(fiID > fi.fiID) {
+			return 1;
+		}
+		return 0;
+	}
 	
 	@Override
 	public String toString() {

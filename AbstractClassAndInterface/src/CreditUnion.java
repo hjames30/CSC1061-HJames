@@ -7,7 +7,7 @@ private double intrestRate;
 	}
 	@Override
 	public double getIntrestRate() {
-		// TODO Auto-generated method stub
+		
 		return intrestRate;
 	}
 
