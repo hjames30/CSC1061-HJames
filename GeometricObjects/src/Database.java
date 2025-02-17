@@ -17,4 +17,9 @@ public class Database {
 		}
 		return objlist;
 	}
+
+	private static GeometricObjects readGeometricObjects() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

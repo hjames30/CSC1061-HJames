@@ -4,9 +4,9 @@ public class BarModel extends Phone {
 
 	public BarModel(String typeOfProcessor, int amountOfCache, int amountOfStorage, ArrayList<String> iMEI) {
 		super(typeOfProcessor, amountOfCache, amountOfStorage, iMEI);
-		Phone.typeOfProcessor="DragonSlayer";
-		Phone.amountOfCache = 8;
-		Phone.amountOfStorage = 32;
+		this.typeOfProcessor="DragonSlayer";
+		this.amountOfCache = 8;
+		this.amountOfStorage = 32;
 	}
 
 }

@@ -3,6 +3,8 @@ public class Farm {
 
 	public static void main(String[] args) {
 		Cat johnston = new Cat("Johnston",6,4.0,2);
+		
+		
 		Dog carl = new Dog("Carl",3,2,1);
 		Horse harry = new Horse("Henrey",3,2,"White Massive");
 		System.out.println(johnston);
