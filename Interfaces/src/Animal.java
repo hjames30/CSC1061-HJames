@@ -13,21 +13,18 @@ public class Animal implements Feedable {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 
 	public double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
-		this.weight = weight;
-	}
-
+	
 	@Override
 	public void feed(int numGallons) {
 		System.out.println("You fed "+numGallons+" gallons. YUM YUM YUM");
+		System.out.println(name+" is now "+ weight+numGallons+" heavy/light");
+		weight = weight + numGallons;
 		
 	}
 

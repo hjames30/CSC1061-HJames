@@ -18,6 +18,8 @@ public class Driver {
 		myCar.drive(500);
 		myCar.drive(500);
 		myCar.drive(400);
+		Animal myAnimal = new Animal("Silly guy", 133);
+		myAnimal.feed(593);
 	}
-
+	
 }
