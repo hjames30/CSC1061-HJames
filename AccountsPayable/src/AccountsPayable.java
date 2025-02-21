@@ -1,3 +1,6 @@
+/*
+ * This is a class that Creates and 
+ */
 import java.util.Scanner;
 
 public class AccountsPayable {

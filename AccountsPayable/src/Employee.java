@@ -1,15 +1,29 @@
-
+/*
+ * This is a Employee class 
+ */
+/**
+ * Class for Base level Employee
+ * @author Holden James
+ */
 public class Employee {
+
 	private String firstName;
 	private String lastName;
 	private int ssn;
-
+/**
+ * No arg constr
+ */
 	public Employee() {
 		this.firstName = "";
 		this.lastName = "";
 		this.ssn = 0;
 	}
-
+/**
+ * Base Constrc
+ * @param firstName First Name
+ * @param lastName Last Name
+ * @param ssn Social Security Number
+ */
 	public Employee(String firstName, String lastName, int ssn) {
 		super();
 		this.firstName = firstName;

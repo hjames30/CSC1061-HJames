@@ -1,5 +1,5 @@
 
-public abstract class FIAbstract implements Comparable<FIAbstract> {
+public abstract class FIAbstract implements Comparable<FIAbstract>,Cloneable {
 
 	private String fiName;
 	private long fiID;
@@ -47,6 +47,16 @@ public abstract class FIAbstract implements Comparable<FIAbstract> {
 			return 1;
 		}
 		return 0;
+	}
+	//Must Have Expectation to work 
+	@Override
+	public FIAbstract clone() throws CloneNotSupportedException{
+		//have to cast from object to Abstract Class
+		FIAbstract clone = (FIAbstract) super.clone();
+		
+		//Changing Address within clone method
+		clone.adress = adress.clone();
+		return clone;
 	}
 	
 	@Override
