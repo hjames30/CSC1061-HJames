@@ -27,24 +27,24 @@ public class SmartLight implements SmartDevice {
 	}
 
 	@Override
-	public String turnOn(SmartDevice s) {
+	public String turnOn() {
 		isOn = true;
-		return s + " device is now on";
+		return  "smartlight device is now on";
 	}
 
 	@Override
-	public String turnOff(SmartDevice s) {
+	public String turnOff() {
 		isOn = false;
-		return s + " device is now off";
+		return   "smartlight device is now off";
 	}
 
 	@Override
-	public String getStatus(SmartDevice s) {
+	public String getStatus() {
 
 		if (isOn = false) {
-			return s + " is off";
+			return  "smartlight is off";
 		} else if (isOn = true) {
-			return s + " is on";
+			return  "smartlight is on";
 		}
 		return null;
 	}

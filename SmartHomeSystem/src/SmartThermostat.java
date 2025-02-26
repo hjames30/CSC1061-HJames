@@ -19,24 +19,24 @@ public class SmartThermostat implements SmartDevice {
 	}
 
 	@Override
-	public String turnOn(SmartDevice s) {
+	public String turnOn() {
 		isOn = true;
-		return s + " device is now on";
+		return  "SmartThrm device is now on";
 	}
 
 	@Override
-	public String turnOff(SmartDevice s) {
+	public String turnOff() {
 		isOn = false;
-		return s + " device is now off";
+		return  "SmartThrm device is now off";
 	}
 
 	@Override
-	public String getStatus(SmartDevice s) {
+	public String getStatus() {
 
 		if (isOn = false) {
-			return s + " is off";
+			return  "SmartThrm is off";
 		} else if (isOn = true) {
-			return s + " is on";
+			return  "SmartThrm is on";
 		}
 		return null;
 	}

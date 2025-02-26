@@ -2,11 +2,11 @@
 public interface SmartDevice {
 	String currentStatus = "null";
 
-	public String turnOn(SmartDevice s);
+	 String turnOn();
 
-	public String turnOff(SmartDevice s);
+	 String turnOff();
 
-	public String getStatus(SmartDevice s);
+	 String getStatus();
 
 	
 }

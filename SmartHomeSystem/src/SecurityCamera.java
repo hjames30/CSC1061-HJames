@@ -2,10 +2,10 @@
 public class SecurityCamera implements SmartDevice {
 	private boolean isOn;
 	private boolean isRecording;
-	
+
 	public SecurityCamera() {
 		isOn = false;
-		isRecording=false;
+		isRecording = false;
 	}
 
 	String toggleRecording() {
@@ -25,24 +25,24 @@ public class SecurityCamera implements SmartDevice {
 	}
 
 	@Override
-	public String turnOn(SmartDevice s) {
+	public String turnOn() {
 		isOn = true;
-		return s + " device is now on";
+		return "Smart Security device is now on";
 	}
 
 	@Override
-	public String turnOff(SmartDevice s) {
+	public String turnOff() {
 		isOn = false;
-		return s + " device is now off";
+		return "Smart Security device is now off";
 	}
 
 	@Override
-	public String getStatus(SmartDevice s) {
+	public String getStatus() {
 
 		if (isOn = false) {
-			return s + " is off";
+			return "Smart Security is off";
 		} else if (isOn = true) {
-			return s + " is on";
+			return "Smart Security is on";
 		}
 		return null;
 	}
