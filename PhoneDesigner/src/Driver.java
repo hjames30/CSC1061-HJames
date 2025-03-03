@@ -14,34 +14,34 @@ public class Driver {
 
 		FlipModel blackberry = (FlipModel) oldPhone.clone();
 		blackberry.setIMEI(IMEI2);
-		blackberry.setAmountOfCache(3);
+		blackberry.setAmountOfCache(500);
 		FoldModel pixel = (FoldModel) samsung.clone();
 		pixel.setIMEI(IMEI2);
-		pixel.setAmountOfStorage(64);
+		pixel.setAmountOfStorage(486314);
 		BarModel apple = (BarModel) barphone.clone();
 		apple.setIMEI(IMEI2);
 		apple.setAmountOfCache(49543);
 		
 
-		if(blackberry.compareTo(oldPhone)==-1) {
+		if(blackberry.compareTo(oldPhone)==1) {
 			System.out.println("BlackBerry is a better phone");
-		}else if(blackberry.compareTo(oldPhone)==1) {
+		}else if(blackberry.compareTo(oldPhone)==-1) {
 			System.out.println("The old Phone is a better phone");
 		}else {
 			System.out.println("They have the same specs");
 		}
 		
-		if(pixel.compareTo(samsung)==-1) {
+		if(pixel.compareTo(samsung)==1) {
 			System.out.println("Pixel is a better phone");
-		}else if(pixel.compareTo(samsung)==1) {
+		}else if(pixel.compareTo(samsung)==-1) {
 			System.out.println("The samsung is a better phone");
 		}else {
 			System.out.println("They have the same specs");
 		}
 		
-		if(apple.compareTo(barphone)==-1) {
+		if(apple.compareTo(barphone)==1) {
 			System.out.println("Apple is a better phone");
-		}else if(apple.compareTo(barphone)==1) {
+		}else if(apple.compareTo(barphone)==-1) {
 			System.out.println("The Bar Phone is a better phone");
 		}else {
 			System.out.println("They have the same specs");
