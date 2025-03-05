@@ -2,7 +2,7 @@ package edu.frcc.csc1061jsp25.ArrayAndLinkedList;
 
 import java.util.List;
 
-public class MyArrayListTest {
+public class MyLinkedListTest {
 
 	public static void main(String[] args) {
 		List<Integer> ml = new MyArrayList<Integer>();
