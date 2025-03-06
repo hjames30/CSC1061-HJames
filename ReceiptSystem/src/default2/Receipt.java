@@ -44,11 +44,11 @@ public class Receipt {
 
 	@Override
 	public String toString() {
-		return "Receipt \n"
+		return "\n"
 				+ "itemName=" + itemName + "\n"
-				+ " price=" + price + "\n"
+				+ " price=" + price + "$\n"
 				+ " quantity=" + quantity + "\n"
-				+ " total=" + total+"\n";
+				+ " total=" + total+"$\n";
 		
 	}
 	

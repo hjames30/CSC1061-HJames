@@ -6,20 +6,20 @@ import java.util.ArrayList;
 public class ReceiptTester {
 
 	public static void main(String[] args) throws IOException {
-		//Instantiate ReceiptFileHandler
+		// Instantiate ReceiptFileHandler
 		ReceiptFileHandler checkout = new ReceiptFileHandler("ReceiptPrinter.csv");
-		
-		ArrayList<Receipt> fromKing = new ArrayList<Receipt>();
-		
-		fromKing.add(new Receipt("Banna", 1.25,12 )); 
-		fromKing.add(new Receipt("appleJuice", 3.25, 2));
-		fromKing.add(new Receipt("ToothPaste", 4.21, 2));
-		fromKing.add(new Receipt("Vegg platter", 10, 1));
-		
-		for(Receipt r:fromKing) {
+
+		ArrayList<Receipt> fromKingSup = new ArrayList<Receipt>();
+
+		fromKingSup.add(new Receipt("Banna", 1.25, 12));
+		fromKingSup.add(new Receipt("appleJuice", 3.25, 2));
+		fromKingSup.add(new Receipt("ToothPaste", 4.21, 1));
+		fromKingSup.add(new Receipt("Vegg platter", 10, 1));
+
+		for (Receipt r : fromKingSup) {
 			checkout.writeToCSV(r);
 		}
-		checkout.readFromCSV();
+		System.out.println(checkout.readFromCSV());
 	}
 
 }
