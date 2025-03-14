@@ -1,7 +1,9 @@
 package edu.frcc.csc1061jsp26.MyHashMap;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +13,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
 	private static final int INTIAL_NUM_BUCKETS = 4;
 	private int size = 0;
 	private static final double LOAD_FACTOR_THRESHOLD = 0.5;
-	private List<Entry<K, V>>[] buckets;
+	private LinkedList<Entry<K, V>>[] buckets;
 
 	private class Entry<K, V> implements Map.Entry<K, V> {
 		K key;
@@ -60,22 +62,43 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
 	@Override
 	public boolean containsKey(Object key) {
-		// TODO Auto-generated method stub
+		if (get(key) != null) {
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < buckets.length; i++) {
+			if (buckets[i] != null) {
+				LinkedList<Entry<K, V>> bucket = buckets[i];
+				for (Entry<K, V> entry : bucket) {
+					if (entry.getValue().equals(value)) {
+						return true;
+					}
+				}
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public V get(Object key) {
-		// TODO Auto-generated method stub
+		int bucketIndex = Math.abs(key.hashCode()) % buckets.length;
+		LinkedList<Entry<K, V>> bucket = buckets[bucketIndex];
+		for (Entry<K, V> entry : bucket) {
+			if (entry.getKey().equals(key)) {
+				return entry.getValue();
+			}
+		}
 		return null;
 	}
-
+	
+	public int getNumBuckets() {
+		return buckets.length;
+	}
+	
 	@Override
 	public V put(K key, V value) {
 		// if key does not exist makes new key for arraylist
@@ -105,53 +128,82 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
 	@Override
 	public V remove(Object key) {
-		int bucketIndex = Math.abs(key.hashCode( )) % buckets.length;
-		if(buckets[bucketIndex]!=null) {
-			int listIndex =-1;
-		for(Entry<K,V> entry : buckets[bucketIndex]) {
-			if(entry.key.equals(key)) {
-				break;
-				
-				
+		int bucketIndex = Math.abs(key.hashCode()) % buckets.length;
+		if (buckets[bucketIndex] != null) {
+			int listIndex = -1;
+			for (Entry<K, V> entry : buckets[bucketIndex]) {
+				if (entry.key.equals(key)) {
+					break;
+
+				}
 			}
+			V temp = buckets[bucketIndex].get(listIndex).value;
+			buckets[bucketIndex].remove(buckets[bucketIndex].get(listIndex));
+			size--;
+			return temp;
 		}
-		V temp = buckets[bucketIndex].get(listIndex).value;
-		buckets[bucketIndex].remove(buckets[bucketIndex].get(listIndex));
-		size--;
-		return temp;
-	}
-		
+
 		return null;
 	}
 
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
-		// TODO Auto-generated method stub
-
+		Set<? extends Map.Entry<? extends K, ? extends V>> entries = m.entrySet();
+		for(Map.Entry<? extends K, ? extends V>entry :entries) {
+			put(entry.getKey(),entry.getValue());
+		}
+		
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-
+		size = 0;
+		for (LinkedList<MyHashMap<K, V>.Entry<K, V>> bucket : buckets) {
+			bucket = null;
+		}
 	}
 
 	@Override
 	public Set<K> keySet() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<K> tempKeySet = new HashSet<K>();
+		for (int i = 0; i < buckets.length; i++) {
+			if (buckets[i] != null) {
+				LinkedList<Entry<K, V>> bucket = buckets[i];
+				for (Entry<K, V> entry : bucket) {
+					tempKeySet.add(entry.getKey());
+				}
+
+			}
+		}
+		return tempKeySet;
 	}
 
 	@Override
 	public Collection<V> values() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<V> tempList = new ArrayList<V>();
+		for(int i =0; i<buckets.length;i++) {
+			if(buckets[i] != null) {
+				LinkedList<Entry<K,V>> bucket = buckets[i];
+				for(Entry<K, V> entry : bucket) {
+					tempList.add(entry.getValue());
+				}
+			}
+		}
+		return tempList;
 	}
 
 	@Override
 	public Set<java.util.Map.Entry<K, V>> entrySet() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<java.util.Map.Entry<K, V>> tempList = new HashSet<java.util.Map.Entry<K, V>>();
+		for(int i =0; i<buckets.length;i++) {
+			if(buckets[i] != null) {
+				LinkedList<Entry<K,V>> bucket = buckets[i];
+				for(Entry<K, V> entry : bucket) {
+					tempList.add(entry);
+				}
+			}
+		}
+		return tempList;
 	}
 
 }
