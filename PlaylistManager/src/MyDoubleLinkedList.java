@@ -336,5 +336,18 @@ public class MyDoubleLinkedList<E> implements List<E> {
 	public <T> T[] toArray(T[] a) {
 		throw new UnsupportedOperationException();
 	}
-
+	public void reverseList() {
+		Node temp = null;
+		Node tempHead = head;
+		Node workingNode = head;
+		
+		while(workingNode != null) {
+			temp = workingNode.prev;
+			workingNode.prev=workingNode.next;
+			workingNode.next = temp;
+			workingNode = workingNode.prev;
+		}
+		if(temp != null)head=temp.prev;
+		tail = tempHead;
+	}
 }

@@ -21,7 +21,7 @@ public class Song {
 	}
 	@Override
 	public String toString() {
-		return "Artists:" + artists + ", title=" + title + "]";
+		return artists + " - " + title;
 	}
 	
 }
