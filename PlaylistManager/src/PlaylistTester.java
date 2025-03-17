@@ -32,11 +32,20 @@ public class PlaylistTester {
 				artistName = input.nextLine();
 				System.out.print("Enter Title: ");
 				songName = input.nextLine();
-				Song temp =new Song(artistName,songName);
-				if(Playlist.contains(temp)) {
-					Playlist.remove(temp);
-				}else {
-					throw new Exception("Song not found in playlist");
+				boolean foundSong = false;
+				for (Song s : Playlist) {
+					if (s.getArtists().equals(artistName) && s.getTitle().equals(songName)) {
+						Playlist.remove(s);
+						foundSong = true;
+						break;
+					}
+				}
+				if (foundSong != true) {
+					try {
+						throw new Exception("Song was not found in playlist");
+					} catch (Exception e) {
+						e.getMessage();
+					}
 				}
 				break;
 			case "count":
@@ -56,7 +65,7 @@ public class PlaylistTester {
 				running = false;
 				break;
 			case "shuffle":
-				// Playlist.shuffle;
+				Playlist.shuffleList();
 				break;
 			case "reverse":
 				Playlist.reverseList();
