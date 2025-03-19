@@ -1,4 +1,6 @@
-
+/*This is a class that adds elements to a doublelinked list 
+ * 
+ */
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -7,7 +9,7 @@ import java.util.ListIterator;
 import java.util.Random;
 
 /**
- * @author downey
+ * @author downey / updated by Holden James
  * @param <E>
  *
  */
@@ -340,26 +342,38 @@ public class MyDoubleLinkedList<E> implements List<E> {
 	public <T> T[] toArray(T[] a) {
 		throw new UnsupportedOperationException();
 	}
-
+/**
+ * Reverses the doublelinked list
+ * @parm none
+ * @return none 
+ */
 	public void reverseList() {
+		//creation of temp nodes
 		Node temp = null;
 		Node tempHead = head;
 		Node workingNode = head;
 
-		while (workingNode != null) {
+		while (workingNode != null) {// works through whole list
+			//reversing list
 			temp = workingNode.prev;
 			workingNode.prev = workingNode.next;
 			workingNode.next = temp;
 			workingNode = workingNode.prev;
 		}
+		//stops when done iterating, sets tail to head and head to tail 
 		if (temp != null)
 			head = temp.prev;
 		tail = tempHead;
 	}
-
+/**
+ * Shuffles the double linkedlist class via Random Class
+ * @param none
+ * @return none
+ */
 	public void shuffleList() {
 		MyDoubleLinkedList<E> tempList = new MyDoubleLinkedList<E>();
 		Node tempNode = head;
+	//if given a linked list that is one or zero size can not shuffle, does not change list
 		if (size<=1) {
 			return;
 		}
