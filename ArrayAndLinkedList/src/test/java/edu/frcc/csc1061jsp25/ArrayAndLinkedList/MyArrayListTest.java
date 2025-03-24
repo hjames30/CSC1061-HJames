@@ -17,6 +17,11 @@ public class MyArrayListTest {
 		ml.add(8);
 		for (int i = 0; i < ml.size(); i++) {
 			System.out.print(ml.get(i) + " ");
+			
+		}
+		System.out.println();
+		for(Integer ll :ml) {
+			System.out.println(ll);
 		}
 		System.out.println();
 

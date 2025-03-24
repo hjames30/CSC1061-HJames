@@ -130,7 +130,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
 	public V remove(Object key) {
 		int bucketIndex = Math.abs(key.hashCode()) % buckets.length;
 		if (buckets[bucketIndex] != null) {
-			int listIndex = -1;
+			int listIndex = 0;
 			for (Entry<K, V> entry : buckets[bucketIndex]) {
 				if (entry.key.equals(key)) {
 					break;
@@ -159,7 +159,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
 	public void clear() {
 		size = 0;
 		for (LinkedList<MyHashMap<K, V>.Entry<K, V>> bucket : buckets) {
-			bucket = null;
+			buckets = null;
 		}
 	}
 

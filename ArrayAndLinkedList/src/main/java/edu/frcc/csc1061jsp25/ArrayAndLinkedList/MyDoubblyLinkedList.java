@@ -55,11 +55,32 @@ public class MyDoubblyLinkedList<E> implements List<E> {
 		}
 		return false;
 	}
+	private class MyIterator implements Iterator<E>{
+		
+		Node temp= head;
+		@Override
+		public boolean hasNext() {
+			if(temp.next != null) {
+				return true;
+			}
+			return false;
+		}
 
+		@Override
+		public E next() {
+			if(temp.next!=null) {
+				E element = temp.data;
+				temp= temp.next;
+				return element;
+				
+			}
+			return null;
+		}
+		
+	}
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MyIterator();
 	}
 
 	@Override

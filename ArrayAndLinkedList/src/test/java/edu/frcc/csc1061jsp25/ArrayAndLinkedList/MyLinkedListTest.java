@@ -5,7 +5,7 @@ import java.util.List;
 public class MyLinkedListTest {
 
 	public static void main(String[] args) {
-		List<Integer> ml = new MyArrayList<Integer>();
+		List<Integer> ml = new MyDoubblyLinkedList<Integer>();
 
 		ml.add(1);
 		ml.add(2);
@@ -15,14 +15,16 @@ public class MyLinkedListTest {
 		ml.add(6);
 		ml.add(7);
 		ml.add(8);
+		
+
+		ml.remove(ml.indexOf(3));
+		/*
 		for (int i = 0; i < ml.size(); i++) {
 			System.out.print(ml.get(i) + " ");
 		}
-		System.out.println();
-
-		ml.remove(ml.indexOf(3));
-		for (int i = 0; i < ml.size(); i++) {
-			System.out.print(ml.get(i) + " ");
+		*/
+		for(Integer myInt : ml) {
+			System.out.println(myInt);
 		}
 
 	}

@@ -15,6 +15,7 @@ public class MyDoubblyLinkedListTest {
 		ml.add(6);
 		ml.add(7);
 		ml.add(8);
+		/*
 		for (int i = 0; i < ml.size(); i++) {
 			System.out.print(ml.get(i) + " ");
 		}
@@ -25,7 +26,12 @@ public class MyDoubblyLinkedListTest {
 		for (int i = 0; i < ml.size(); i++) {
 			System.out.print(ml.get(i) + " ");
 		}
-
+		*/
+		
+		
+		for (Integer myInt : ml) {
+			System.out.println(myInt);
+		}
 	}
 
 }
