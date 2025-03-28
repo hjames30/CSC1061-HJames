@@ -7,7 +7,7 @@ import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
 
-public class BookNode implements  Comparable<BookNode> {
+public class BookNode implements Comparable<BookNode> {
 	private String title;
 	private int chapNum;
 	private int secNum;
