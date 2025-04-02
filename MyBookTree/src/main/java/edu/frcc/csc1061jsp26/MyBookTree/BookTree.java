@@ -82,7 +82,7 @@ public class BookTree  {
 				return;
 			}
 			for(BookNode child: node.getChildNodes()) {
-				preorder(child);
+				postorder(child);
 			}
 			
 			queue.add(node);
