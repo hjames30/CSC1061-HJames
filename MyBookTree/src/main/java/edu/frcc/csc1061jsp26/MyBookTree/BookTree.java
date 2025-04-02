@@ -7,7 +7,7 @@ import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
 
-public class BookTree implements Iterator<BookNode> {
+public class BookTree  {
 	private BookNode root;
 
 	public BookTree(String title) {
@@ -50,26 +50,73 @@ public class BookTree implements Iterator<BookNode> {
 			}
 		}
 		return false;
-	}public Iterator<BookNode> iterator() {
-		return new BookNodeIterator(root);
 	}
-	//Preorder Tree Traversal
-	private class BookNodeIterator implements Iterator<BookNode>{
+
+	public Iterator<BookNode> iterator() {
+		return new RecursiveIterator(root);
+	}
+
+	private class RecursiveIterator implements Iterator<BookNode> {
+		Deque<BookNode> queue = new ArrayDeque<>();
+
+		public RecursiveIterator(BookNode node) {
+			preorder(node);
+		}
+
+		private void preorder(BookNode node) {
+			queue.add(node);
+			
+			if(node.getChildNodes()==null||node.getChildNodes().isEmpty()) {
+				return;
+			}
+			for(BookNode child: node.getChildNodes()) {
+				preorder(child);
+			}
+			
+			// putting queue.add(node); here would make postorder traversal
+		}
+		private void postorder(BookNode node) {
+			
+			
+			if(node.getChildNodes()==null||node.getChildNodes().isEmpty()) {
+				return;
+			}
+			for(BookNode child: node.getChildNodes()) {
+				preorder(child);
+			}
+			
+			queue.add(node);
+		}
+
+		@Override
+		public boolean hasNext() {
+			return !queue.isEmpty();
+		}
+
+		@Override
+		public BookNode next() {
+			return queue.removeFirst();
+		}
+
+	}
+
+	// Preorder Tree Traversal
+	private class BookNodeIterator implements Iterator<BookNode> {
 		Deque<BookNode> stack;
+
 		public BookNodeIterator(BookNode node) {
 			stack = new ArrayDeque<BookNode>();
 			stack.push(node);
-			
-			
+
 		}
-		
+
 		@Override
 		public boolean hasNext() {
-			if(stack.isEmpty()) {
+			if (stack.isEmpty()) {
 				return false;
 			}
 			return true;
-			//return !stack.isEmpty();
+			// return !stack.isEmpty();
 		}
 
 		@Override
@@ -78,24 +125,14 @@ public class BookTree implements Iterator<BookNode> {
 			List<BookNode> children = node.getChildNodes();
 			List<BookNode> listCopy = new ArrayList<>(children);
 			Collections.reverse(listCopy);
-			for(BookNode child: listCopy) {
+			for (BookNode child : listCopy) {
 				stack.push(child);
 			}
 			return node;
 		}
-		
-	}
-	@Override
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
+
 	}
 
-	@Override
-	public BookNode next() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	
+
 }
