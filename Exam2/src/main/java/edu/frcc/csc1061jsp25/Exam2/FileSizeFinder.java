@@ -7,7 +7,7 @@ public class FileSizeFinder {
 
 	public static void main(String[] args) {
 		//will be different on my desktop vs school computer/ do not change anything else 
-		String filePath = "C:\\Users\\S02943689\\Downloads\\FileSizeTest";
+		String filePath = "C:\\Users\\Holden\\Downloads\\FileSizeTest";
 		
 		File file = new File(filePath);
 		

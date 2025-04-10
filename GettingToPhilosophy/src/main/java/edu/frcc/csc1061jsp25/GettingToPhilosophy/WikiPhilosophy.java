@@ -61,25 +61,37 @@ public class WikiPhilosophy {
         // select the content text and pull out the paragraphs.
         Element content = doc.getElementById("mw-content-text");
         Elements paragraphs = content.select("p");
-        int numParenthese =0;
+      
+        boolean inParentheses =false;
+       
         
         for (Element para : paragraphs) {
-            Iterable<Node> iter = new WikiNodeIterable(para);
-            for (Node node : iter) {
+            List<Node> nodes = para.childNodes();
+            for (Node node : nodes) {
+                if(node instanceof TextNode) {
+                	String text =((TextNode) node).text();
+                	for(char c :text.toCharArray()) {
+                		if(c=='(') {
+                			inParentheses=true;
+                		}else if (c==')') {
+                			inParentheses= false;
+                		}
+                		
+                	}
+                }else if(node instanceof Element) {
+                	Element element =(Element)node;
+                	if((!element.attr("href").contains("#"))&& !inParentheses)
+                	
+                		testConjecture(destination, element.attr("href"), limit--);
+                }
                 
                 // TODO: FILL THIS IN!
             	// If this node is a text node make sure you are not within parentheses
             	//either use stack or int num parentheses and inc and dec with open and close parent
             	//first character not a pound|| not empty ||null
-            	if(node instanceof TextNode) {
-            		if(!node.equals(null)) {
-            			if(!((TextNode) node).isBlank()) {
-            			//if()	
-            			}
-            		}
-            	}
+            
             	// If this node has a link you can get it by accessing the href attribute in the node
-            	String link = node.attr("href");
+            	
             	// If the link is not null and not an empty string and does not start with a # sign 
             	// and is not within parentheses, follow the link recursively by calling testConjecture() 
             	// until you reach your objective or run past the limit. 

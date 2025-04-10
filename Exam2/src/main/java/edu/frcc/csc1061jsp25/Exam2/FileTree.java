@@ -36,12 +36,25 @@ public class FileTree implements Iterable <FileNode> {
 	 * 
 	 * @param fileNode
 	 */
+	
 	private void buildTree(FileNode fileNode) {
+		File files = fileNode.getFile();
+		
+		if(files.isDirectory()) {
+			File[] file = files.listFiles();
+			if(file!=null) {
+				for(File F : file) {
+					FileNode childNode = new FileNode(F);
+					fileNode.getChildNodes().add(childNode);
+					buildTree(childNode);				}
+			}
+		}
 		//call build tree for first node this will return children
 		//then call build tree on all children 
 		//if its a leaf node it does not list any children
 		//code is maybe 10 lines long 
 		//done recursively 
+		
 		
 	
 	}
@@ -56,19 +69,34 @@ public class FileTree implements Iterable <FileNode> {
 	 */
 	//do not use stack class use array dequqe
 	private class DepthFirstIterator implements Iterator<FileNode> {
-		
+		private Deque<FileNode> stack1;
+		private Deque<FileNode> stack2;
 		public DepthFirstIterator() {
-
+			// Create two stacks
+			stack1= new ArrayDeque<>();
+			stack2= new ArrayDeque<>();
+			// Push root to first stack
+			stack1.push(root);
+			// Run while first stack is not empty
+			while(!stack1.isEmpty()) {
+				// Pop from stk1 and push it to stk2
+				FileNode node = stack1.pop();
+				stack2.push(node);
+				
+				for(FileNode child :node.getChildNodes()) {
+					stack1.push(child);
+				}
+			}
 		}
 
 		@Override
 		public boolean hasNext() {
-			return true;
+			return !stack2.isEmpty();
 		}
 		
 		@Override
 		public FileNode next() {
-			return null;
+			return stack2.pop();
 		}
 	}
 	
@@ -89,19 +117,24 @@ public class FileTree implements Iterable <FileNode> {
 	 * 
 	 */
 	private class BreadthFirstIterator implements Iterator<FileNode> {
-		
+		private Queue<FileNode> queue;
 		public BreadthFirstIterator() {
-
+			queue = new ArrayDeque<>();
+			queue.add(root);
 		}
 		
 		@Override
 		public boolean hasNext() {
-			return true;
+			return !queue.isEmpty();
 		}
 
 		@Override
 		public FileNode next() {
-			return null;
+			FileNode node = queue.poll();
+			for(FileNode child : node.getChildNodes()) {
+				queue.add(child);
+			}
+			return node;
 		}
 		
 	}
