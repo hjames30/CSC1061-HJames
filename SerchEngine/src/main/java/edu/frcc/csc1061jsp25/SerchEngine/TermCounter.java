@@ -3,6 +3,7 @@ package edu.frcc.csc1061jsp25.SerchEngine;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
@@ -19,6 +20,9 @@ public class TermCounter {
 	}
 	public String getLabel() {
 		return label;
+	}
+	public Set<String> getKeySet(){
+		return map.keySet();
 	}
 	public void put(String term, int count) {
 		map.put(term, count);
@@ -58,17 +62,7 @@ public class TermCounter {
 	}
 	
 	
-	public static void main(String[] args)throws IOException {
-		String url = "https://en.wikipedia.org/wiki/Java_(programming_language)";
-		WikiFetcher wf = new WikiFetcher();
-		Elements paragraphs = wf.fetchWikipedia(url);
-		
-		TermCounter counter = new TermCounter(url);
-		
-		counter.processElement(paragraphs);
-		System.out.println(url);
-		counter.printCounts();
-		
-	}
+	
+	
 
 }

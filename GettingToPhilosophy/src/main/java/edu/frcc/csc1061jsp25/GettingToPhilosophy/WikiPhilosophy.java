@@ -80,9 +80,9 @@ public class WikiPhilosophy {
                 	}
                 }else if(node instanceof Element) {
                 	Element element =(Element)node;
-                	if((!element.attr("href").contains("#"))&& !inParentheses)
+                	if((!node.attr("href").contains("#"))&& !inParentheses)
                 	
-                		testConjecture(destination, element.attr("href"), limit--);
+                		testConjecture(destination, node.attr("href"), limit--);
                 }
                 
                 // TODO: FILL THIS IN!

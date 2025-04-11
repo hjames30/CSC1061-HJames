@@ -82,7 +82,7 @@ public class FileTree implements Iterable <FileNode> {
 				// Pop from stk1 and push it to stk2
 				FileNode node = stack1.pop();
 				stack2.push(node);
-				
+				//gets all children of poped node and all of the children's children
 				for(FileNode child :node.getChildNodes()) {
 					stack1.push(child);
 				}
@@ -127,7 +127,7 @@ public class FileTree implements Iterable <FileNode> {
 		public boolean hasNext() {
 			return !queue.isEmpty();
 		}
-
+		//nrm poll is allowed
 		@Override
 		public FileNode next() {
 			FileNode node = queue.poll();
