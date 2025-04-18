@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+import edu.frcc.csc1061jsp25.MyTreeMap.MyTreeMap.Node;
+
 public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061jsp25.MyAVLTree.MyAVLTree<K, V>.Node> {
 
 	private Node root = null;
@@ -299,8 +301,83 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061jsp2
 	// homework
 	@Override
 	public V remove(Object key) {
-		// TODO Auto-generated method stub
+		if (root == null) {
+			return null;
+		} else {
+			Node parrent = null;
+			Node current = root;
+			Comparable<K> k = (Comparable<K>) key;
+			V removedValue = null;
+			//go through all node to find key
+			while (current != null) {
+				if (k.compareTo(current.key) < 0) {
+					parrent = current;
+					current = current.left;
+				} else if (k.compareTo(current.key) > 0) {
+					parrent = current;
+					current = current.right;
+				} else {
+					removedValue = current.value;
+					// Leaf Node case
+					if (current.left == null && current.right == null) {
+						if (parrent == null) {
+							root = null;
+						} else if (k.compareTo(parrent.key) < 0) {
+							parrent.left = null;
+						} else {
+							parrent.right = null;
+						}
+						return removedValue;
+					}
+					// Node with only left child
+					else if (current.right == null) {
+						if (parrent == null) {
+							root = current.left;
+						} else if (k.compareTo(parrent.key) < 0) {
+							parrent.left = current.left;
+						} else {
+							parrent.right = current.left;
+						}
+						return removedValue;
+					}
+					// Node with only right child
+					else if (current.left == null) {
+						if (parrent == null) {
+							root = current.right;
+						} else if (k.compareTo(parrent.key) < 0) {
+							parrent.right = current.right;
+						} else {
+							parrent.right = current.right;
+						}
+						return removedValue;
+
+					} else {
+						// Node with two Children
+						Node inorderSuccessorParrent = current;
+						Node inorderSuccessor = current.right;
+						while (inorderSuccessor.left != null) {
+							inorderSuccessorParrent = inorderSuccessor;
+							inorderSuccessor = inorderSuccessor.left;
+
+						}
+						current.key = inorderSuccessor.key;
+						current.value = inorderSuccessor.value;
+						// remove successor
+						if (inorderSuccessorParrent == current) {
+							inorderSuccessorParrent.right = inorderSuccessor.right;
+						} else {
+							inorderSuccessorParrent.left = inorderSuccessor.right;
+						}
+						return removedValue;
+					}
+
+				}
+			}
+
+		}
+
 		return null;
+	}
 	}
 
 	@Override

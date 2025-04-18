@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-public class MyTreeMap<K, V> implements Map<K, V>,Iterable<V>{
+public class MyTreeMap<K, V> implements Map<K, V>, Iterable<V> {
 
 	private Node root = null;
 	private int size = 0;
@@ -29,7 +29,6 @@ public class MyTreeMap<K, V> implements Map<K, V>,Iterable<V>{
 		}
 
 	}
-	
 
 	@Override
 	public int size() {
@@ -49,25 +48,21 @@ public class MyTreeMap<K, V> implements Map<K, V>,Iterable<V>{
 	@Override
 	public boolean containsKey(Object key) {
 		Node current = root;
-		Comparable<K> k = (Comparable<K>)key;
-		
-		while(current!= key) {
-			if(k.compareTo(current.key)<0) {
+		Comparable<K> k = (Comparable<K>) key;
+
+		while (current != key) {
+			if (k.compareTo(current.key) < 0) {
 				current = current.left;
-			}else if(k.compareTo(current.key)>0) {
+			} else if (k.compareTo(current.key) > 0) {
 				current = current.right;
-			}
-			else {
+			} else {
 				return false;
 			}
 		}
 		return true;
 	}
 	/*
-	 * if(get(key)!=null){
-	 * return true;
-	 * }
-	 * return false;
+	 * if(get(key)!=null){ return true; } return false;
 	 */
 
 	@Override
@@ -84,9 +79,9 @@ public class MyTreeMap<K, V> implements Map<K, V>,Iterable<V>{
 		while (current != null) {
 			if (k.compareTo(current.key) < 0) {
 				current = current.left;
-			}else if(k.compareTo(current.key)>0) {
+			} else if (k.compareTo(current.key) > 0) {
 				current = current.right;
-			}else {
+			} else {
 				return current.value;
 			}
 		}
@@ -127,10 +122,85 @@ public class MyTreeMap<K, V> implements Map<K, V>,Iterable<V>{
 		size++;
 		return null;
 	}
-	//homework
+
+	// homework
 	@Override
 	public V remove(Object key) {
-		// TODO Auto-generated method stub
+		if (root == null) {
+			return null;
+		} else {
+			Node parrent = null;
+			Node current = root;
+			Comparable<K> k = (Comparable<K>) key;
+			V removedValue = null;
+			//go through all node to find key
+			while (current != null) {
+				if (k.compareTo(current.key) < 0) {
+					parrent = current;
+					current = current.left;
+				} else if (k.compareTo(current.key) > 0) {
+					parrent = current;
+					current = current.right;
+				} else {
+					removedValue = current.value;
+					// Leaf Node case
+					if (current.left == null && current.right == null) {
+						if (parrent == null) {
+							root = null;
+						} else if (k.compareTo(parrent.key) < 0) {
+							parrent.left = null;
+						} else {
+							parrent.right = null;
+						}
+						return removedValue;
+					}
+					// Node with only left child
+					else if (current.right == null) {
+						if (parrent == null) {
+							root = current.left;
+						} else if (k.compareTo(parrent.key) < 0) {
+							parrent.left = current.left;
+						} else {
+							parrent.right = current.left;
+						}
+						return removedValue;
+					}
+					// Node with only right child
+					else if (current.left == null) {
+						if (parrent == null) {
+							root = current.right;
+						} else if (k.compareTo(parrent.key) < 0) {
+							parrent.right = current.right;
+						} else {
+							parrent.right = current.right;
+						}
+						return removedValue;
+
+					} else {
+						// Node with two Children
+						Node inorderSuccessorParrent = current;
+						Node inorderSuccessor = current.right;
+						while (inorderSuccessor.left != null) {
+							inorderSuccessorParrent = inorderSuccessor;
+							inorderSuccessor = inorderSuccessor.left;
+
+						}
+						current.key = inorderSuccessor.key;
+						current.value = inorderSuccessor.value;
+						// remove successor
+						if (inorderSuccessorParrent == current) {
+							inorderSuccessorParrent.right = inorderSuccessor.right;
+						} else {
+							inorderSuccessorParrent.left = inorderSuccessor.right;
+						}
+						return removedValue;
+					}
+
+				}
+			}
+
+		}
+
 		return null;
 	}
 
@@ -165,27 +235,32 @@ public class MyTreeMap<K, V> implements Map<K, V>,Iterable<V>{
 
 	public Iterator<V> iterator() {
 		return new NonRecursiveIterator();
-		
+
 	}
-	private class NonRecursiveIterator implements Iterator<V>{
+
+	private class NonRecursiveIterator implements Iterator<V> {
 		private Deque<Node> stack = new ArrayDeque<>();
+
 		public NonRecursiveIterator() {
 			pushOnStack(root);
-			
+
 		}
+
 		public void pushOnStack(Node node) {
 			Node current = node;
-			while(current != null) {
+			while (current != null) {
 				stack.push(current);
 				current = current.left;
-				
+
 			}
 		}
+
 		@Override
 		public boolean hasNext() {
-			
+
 			return !stack.isEmpty();
 		}
+
 		@Override
 		public V next() {
 			Node node = stack.pop();
@@ -194,49 +269,53 @@ public class MyTreeMap<K, V> implements Map<K, V>,Iterable<V>{
 			return value;
 		}
 	}
-	private class RecursiveIterator implements Iterator<V>{
+
+	private class RecursiveIterator implements Iterator<V> {
 		private Queue<V> list = new ArrayDeque<>();
-		
+
 		public RecursiveIterator() {
 			inOrder(root);
 		}
+
 		private void preOrder(Node node) {
-			if(node ==null) {
+			if (node == null) {
 				return;
 			}
-				list.add(node.value);
-				preOrder(node.left);
-				preOrder(node.right);
-			}
+			list.add(node.value);
+			preOrder(node.left);
+			preOrder(node.right);
+		}
+
 		private void postOrder(Node node) {
-			if(node ==null) {
+			if (node == null) {
 				return;
 			}
-				postOrder(node.left);
-				postOrder(node.right);
-				list.add(node.value);
-				
-			}
+			postOrder(node.left);
+			postOrder(node.right);
+			list.add(node.value);
+
+		}
+
 		private void inOrder(Node node) {
-			if(node ==null) {
+			if (node == null) {
 				return;
 			}
-				inOrder(node.left);
-				list.add(node.value);
-				inOrder(node.right);
-				
-				
-			}
+			inOrder(node.left);
+			list.add(node.value);
+			inOrder(node.right);
+
+		}
+
 		@Override
 		public boolean hasNext() {
 			return !list.isEmpty();
-			
+
 		}
+
 		@Override
 		public V next() {
 			return list.remove();
 		}
-				
-		
+
 	}
 }
