@@ -19,7 +19,11 @@ public class MyGraphTest {
 				{5,1,3},{5,2,4},{5,3,6},{5,4,8}
 		};
 		MyGraph<Integer> graph = new MyGraph<>(vertices,edges);
+		System.out.println("Orginal Graph");
 		graph.printEdges();
+		
+		System.out.println(graph.bfs());
+		System.out.println(graph.dfs());
 	}
 
 }
