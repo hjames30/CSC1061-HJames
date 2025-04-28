@@ -23,7 +23,7 @@ public class MyGraphTest {
 		graph.printEdges();
 		
 		System.out.println(graph.bfs());
-		System.out.println(graph.dfs());
+		System.out.println(graph.dfs(vertices.get(0)));
 	}
 
 }
