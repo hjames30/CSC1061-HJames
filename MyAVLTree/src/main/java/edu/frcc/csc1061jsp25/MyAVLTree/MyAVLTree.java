@@ -288,10 +288,50 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061jsp2
 		updateHeight(ch);
 	}
 	private void balanceRR(Node current, Node parrent) {
-		//HomeWork
+		Node ggp= parrent;
+		Node gp = current;
+		Node par = gp.right;
+		Node ch = par.right;
+		if (gp == root) {
+			root = par;
+		} else {
+
+			if (ggp.left == gp) {
+				ggp.left =par;
+			} else {
+				ggp.right = par;
+			}
+		}
+		gp.right = par.left;
+		par.left = gp;
+		updateHeight(gp);
+		updateHeight(ch);
+		updateHeight(par);
 	}
 	private void balanceRL(Node current, Node parrent) {
-		//Homework
+		Node ggp = parrent;
+		Node gp = current;
+		Node par = gp.right;
+		Node ch = par.left;
+		if(gp==root) {
+			root= ch;
+		}else {
+			//first link
+			if(ggp.left==gp) {
+				ggp.left=ch;
+			}
+			else {
+				ggp.right=ch;
+			}
+		}
+		par.left=ch.right;
+		gp.right=ch.left;
+		ch.right=par;
+		ch.left=gp;
+		
+		updateHeight(gp);
+		updateHeight(par);
+		updateHeight(ch);
 	}
 
 	
