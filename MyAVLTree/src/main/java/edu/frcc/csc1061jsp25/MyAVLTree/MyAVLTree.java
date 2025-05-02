@@ -260,6 +260,7 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061jsp2
 		updateHeight(gp);
 		updateHeight(ch);
 		updateHeight(par);
+		balancePath();
 
 	}
 	private void balanceLR(Node current,Node parrent) {
@@ -286,6 +287,7 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061jsp2
 		updateHeight(gp);
 		updateHeight(par);
 		updateHeight(ch);
+		balancePath();
 	}
 	private void balanceRR(Node current, Node parrent) {
 		Node ggp= parrent;
@@ -307,6 +309,7 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061jsp2
 		updateHeight(gp);
 		updateHeight(ch);
 		updateHeight(par);
+		balancePath();
 	}
 	private void balanceRL(Node current, Node parrent) {
 		Node ggp = parrent;
@@ -332,6 +335,7 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061jsp2
 		updateHeight(gp);
 		updateHeight(par);
 		updateHeight(ch);
+		balancePath();
 	}
 
 	
