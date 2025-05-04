@@ -38,13 +38,14 @@ public class MyAVLTreeTest {
 		map.put(30, 30);	// Needs RL rotation at node 20
 		printInOrder(map);
 		
-		System.out.println("After RL rotation at node 20");
+		System.out.println("After RL rotation at node 25");
 		printBalanceFactor(map);
+		
 		
 		map.put(10, 10);     // Needs LR rotation at node 20.
 		printInOrder(map);
 
-		System.out.println("After LR rotation at node 20");
+		System.out.println("After LR rotation at node 25");
 		printBalanceFactor(map);
 	}
 

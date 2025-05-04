@@ -272,7 +272,7 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061jsp2
 			root= ch;
 		}else {
 			//first link
-			if(ggp.left==par) {
+			if(ggp.left==gp) {
 				ggp.left=ch;
 			}
 			else {
