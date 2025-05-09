@@ -4,8 +4,10 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 public class MyGraph<E> {
 	private List<Vertex> vertices = new ArrayList<>();
@@ -228,26 +230,64 @@ public class MyGraph<E> {
 	}
 	
 
-	/* TODO: Create a spanning tree using Kruskal's Algorithm and return it. 
-	** The spanning tree will be a new graph
-	*/
+	/* TODO: Create a spanning tree using Kruskal's Algorithm and return it.
+     ** The spanning tree will be a new graph
+     */
 	public MyGraph<E> findMinimumSpanningTree() {
-		//sort list of edges from least weight to highest weight
-		List<Edge> allEdge = new ArrayList<>();
-		for(int i =0;i<vertices.size();i++) {
-			Vertex ver = vertices.get(i);
-			List<Edge> neighbors = ver.neighbors;
-			for(Edge edge : neighbors) {
-				allEdge.add(edge);
-			}
-		
+	    //Sort all edges by weight
+	    List<Edge> allEdges = new ArrayList<>();
+	    for (Vertex vertex : vertices) {
+	        for (Edge edge : vertex.neighbors) {
+	            //add edge only once, no pair
+	            if (vertex.getElement().hashCode() < edge.getDestination().getElement().hashCode()) {
+	                allEdges.add(edge);
+	            }
+	        }
+	    }
+	    Collections.sort(allEdges);
+
+	    // new empty MST graph has vertices no edges
+	    MyGraph<E> mst = new MyGraph<>(new ArrayList<>());
+	    for (Vertex vertex : vertices) {
+	        mst.addVertex(new Vertex(vertex.getElement()));
+	    }
+
+	    //Add edges if no cycle is formed, checks if path found already in vertices using dfs
+	    for (Edge edge : allEdges) {
+	        Vertex src = mst.findVertex(edge.getSource().getElement());
+	        Vertex dest = mst.findVertex(edge.getDestination().getElement());
+	        	//if no path add edge
+	        if (!hasPathDFS(mst, src, dest, null)) {
+	            mst.addEdge(mst.new Edge(src, dest, edge.getWeight()));
+	            mst.addEdge(mst.new Edge(dest, src, edge.getWeight())); 
+	        }
+	    }
+
+	    return mst;
 	}
-		Collections.sort(allEdge);
-		MyGraph<E> mst = new MyGraph(vertices);
-		
-		
 
-
-
+	// Check if there's already a path between src and dest, parrent used to not go backwards
+	private boolean hasPathDFS(MyGraph<E> graph, Vertex current, Vertex target, Vertex parent) {
+	    //creates set to see if visited don't visit nodes more than once 
+		Set<Vertex> visited = new HashSet<>();
+	    return dfs(current, target, parent, visited, graph);
+	}
+	//recursive method for dfs
+	private boolean dfs(Vertex current, Vertex target, Vertex parent, Set<Vertex> visited, MyGraph<E> graph) {
+	   // if current == target true, cycle forms 
+		if (current.equals(target)) return true;
+		//else add current to vistited
+	    visited.add(current);
+	    for (Edge edge : current.neighbors) {
+	        Vertex neighbor = edge.destination;
+	        //if does not go backwards and is unvistited 
+	        if (!neighbor.equals(parent) && !visited.contains(neighbor)) {
+	        	//recursive dfs with neighbor
+	        	if (dfs(neighbor, target, current, visited, graph)) {
+	                return true;
+	            }
+	        }
+	    }
+	    return false;
 	}
 }
